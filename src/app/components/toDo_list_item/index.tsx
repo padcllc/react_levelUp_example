@@ -27,6 +27,7 @@ export function ToDoListItem({ element, deleteItem }: ITodoListItemProps) {
                     navigate(`/user/${element?.id}`)
                 })} /></Td>
                 <Td><DeleteIcon onClick={(() => {
+                    console.log();
                     deleteItem(element?.id) ///using react state
                 })} /></Td>
 
