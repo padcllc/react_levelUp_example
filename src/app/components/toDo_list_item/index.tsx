@@ -28,6 +28,10 @@ export function ToDoListItem({ element, deleteItem }: ITodoListItemProps) {
                 })} /></Td>
                 <Td><DeleteIcon onClick={(() => {
                     deleteItem(element?.id) ///using react state
+                    console.log('fggggggggggg');
+                    console.log('fggggggggggg');
+                    console.log('fggggggggggg');
+                    console.log('fggggggggggg');
                 })} /></Td>
 
             </Tr>
