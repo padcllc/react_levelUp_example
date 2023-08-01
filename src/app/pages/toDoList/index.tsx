@@ -34,7 +34,7 @@ export function ToDoList() {
     const [toDoItem, setToDoItem] = useState<ToDoListDataType[]>([]);///for example, useState can be used to send and change state
 
     useEffect(() => { /// for example, useEffect can be used to get table data in page mounting
-        axios.get("../../../../src/db/toDo_list.json")
+        axios.get("db/toDo_list.json")
             .then((result: ToDoListData) => {
                 setToDoItem(result.data)
 

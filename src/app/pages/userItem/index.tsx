@@ -26,7 +26,7 @@ export function UserItem() {
     const [userItem, setUserItem] = useState<UserDataType>();
 
     useEffect(() => { /// for example, useEffect can be used to get table data in page mounting
-        axios.get("../../../../src/db/toDo_list.json")
+        axios.get("db/toDo_list.json")
             .then((result: UsertData) => {
                 const info = result.data.find((item: UserDataType) => item.id === Number(params.id));
                 ////find function to find the first encountered element that satisfies the condition
