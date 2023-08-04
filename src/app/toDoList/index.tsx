@@ -9,10 +9,13 @@ import {
     TableContainer,
 } from '@chakra-ui/react';
 
-import { ToDoListItem } from '../../components/toDo_list_item';
+import { ToDoListItem } from '../components/toDo_list_item';
 
 import { Button } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
+import { Select } from '@chakra-ui/react';
+
+import roleHook from '../hooks/role_hook';
 
 
 interface ToDoListData {
@@ -32,6 +35,11 @@ export function ToDoList() {
     const navigate = useNavigate(); ///used  React Router useNavigate hooks.
 
     const [toDoItem, setToDoItem] = useState<ToDoListDataType[]>([]);///for example, useState can be used to send and change state
+    const [showValue, setshowValue] = useState<boolean>();
+
+    const  isOwner:boolean = roleHook('user');
+
+    const [role,setRole] = useState<any>();
 
     useEffect(() => { /// for example, useEffect can be used to get table data in page mounting
         axios.get("db/toDo_list.json")
@@ -44,25 +52,39 @@ export function ToDoList() {
     }, []);
 
 
-    const  addToDoList = useCallback(() => { ///used useCallback
+    const addToDoList = useCallback(() => { ///used useCallback
         setToDoItem((t) => [...toDoItem, {
-            id: toDoItem.length+1,
+            id: toDoItem.length + 1,
             first_name: 'Johny',
             last_name: 'Doe',
             age: 40,
         }]);
-      }, [toDoItem]);
+    }, [toDoItem]);
 
 
-       function openUserPage() {
+    function openUserPage() {
         navigate('/user');
-      }
+    }
 
 
 
     return (
         <>
+            {/* Use Chakra UI Input  */}
+            <div style={{ width: '200px' }}>
+                <p>{role ? 'ffgfgfdgfgfdgfdg' : ''}</p>
+                <Select placeholder='Select option' onChange={((event:React.ChangeEvent<HTMLSelectElement>) => {
+                   setRole(roleHook(event.target.value));
+                   console.log(role)
+                })}>
+                    <option value='user'>User</option>
+                    <option value='admin'>Admin</option>
+                    <option value='superadmin'>Super Admin</option>
+                </Select>
+            </div>
+
             {/* Use Chakra UI Table  */}
+
             <TableContainer>
                 <Table variant='striped' colorScheme='teal'>
                     <Thead>
@@ -96,4 +118,5 @@ export function ToDoList() {
         </>
     )
 };
+
 

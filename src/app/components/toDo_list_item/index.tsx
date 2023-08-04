@@ -4,7 +4,7 @@ import {
 } from '@chakra-ui/react';
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
 
-import { ToDoListDataType } from '../../pages/toDoList/index';
+import { ToDoListDataType } from '../../toDoList/index';
 import { useNavigate } from 'react-router-dom';
 
 export interface ITodoListItemProps {
