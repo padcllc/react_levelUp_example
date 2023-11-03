@@ -35,11 +35,6 @@ export function ToDoList() {
     const navigate = useNavigate(); ///used  React Router useNavigate hooks.
 
     const [toDoItem, setToDoItem] = useState<ToDoListDataType[]>([]);///for example, useState can be used to send and change state
-    const [showValue, setshowValue] = useState<boolean>();
-
-    const  isOwner:boolean = roleHook('user');
-
-    const [role,setRole] = useState<any>();
 
     useEffect(() => { /// for example, useEffect can be used to get table data in page mounting
         axios.get("db/toDo_list.json")
@@ -72,10 +67,8 @@ export function ToDoList() {
         <>
             {/* Use Chakra UI Input  */}
             <div style={{ width: '200px' }}>
-                <p>{role ? 'ffgfgfdgfgfdgfdg' : ''}</p>
                 <Select placeholder='Select option' onChange={((event:React.ChangeEvent<HTMLSelectElement>) => {
-                   setRole(roleHook(event.target.value));
-                   console.log(role)
+                   roleHook(event.target.value);
                 })}>
                     <option value='user'>User</option>
                     <option value='admin'>Admin</option>
